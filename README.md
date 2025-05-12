@@ -5,8 +5,8 @@
 1. Fork this repository: `https://github.com/kagerka/crud-api.git`
 2. To install all dependencies use `npm install`.
 3. Rename file `.env.example` to `.env`.
-4. Run script `npm run start` in command line.
-5. Use Postman to check the server work properly.
+4. Run scripts `npm run start:dev` or `npm run start:prod` in command line.
+5. Use Postman to check the server works properly.
 
 ### Implemented endpoint `api/users`:
 

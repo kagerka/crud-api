@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 import * as http from "http";
-import { users } from "./src/data";
-import { deleteMethod, getMethod, postMethod, putMethod } from "./src/methods";
+import { users } from "./data";
+import { deleteMethod, getMethod, postMethod, putMethod } from "./methods";
 
 dotenv.config();
 const PORT = process.env.PORT || 4000;

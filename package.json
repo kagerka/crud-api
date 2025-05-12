@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "nodemon --exec ts-node index.ts"
+    "start": "nodemon --exec ts-node index.ts",
+    "start:dev": "ts-node-dev --respawn index.ts",
+    "build": "tsc",
+    "start:prod": "npm run build && node dist/index.js"
   },
   "keywords": [],
   "author": "",
