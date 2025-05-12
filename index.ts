@@ -1,5 +1,6 @@
 import * as http from "http";
 import { users } from "./src/data";
+import { getMethod, postMethod } from "./src/methods";
 
 http
   .createServer(async (req, res) => {
@@ -14,20 +15,18 @@ http
       return;
     }
 
-    if (method === "GET" && !id) {
-      res.writeHead(200);
-      res.end(JSON.stringify(users));
-    }
+    switch (method) {
+      case "GET":
+        await getMethod(method, id, res, users);
+        return;
+      case "POST":
+        await postMethod(req, res, users);
+        return;
 
-    if (method === "GET" && id) {
-      const user = users.find((el) => el.id === id);
-      if (!user) {
-        res.writeHead(404, { "Content-type": "application/json" });
-        res.end(JSON.stringify({ message: "User not found" }));
-      }
-      res.writeHead(200);
-      res.end(JSON.stringify(user));
-      return;
+      default:
+        res.writeHead(405, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ message: `It's impossible to use ${method} method.` }));
+        return;
     }
   })
   .listen(4000, () => {

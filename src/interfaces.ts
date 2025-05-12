@@ -8,3 +8,9 @@ export interface User {
 export interface Users {
   users: User[];
 }
+
+export interface PostUser {
+  username: string;
+  age: number;
+  hobbies: string[];
+}
