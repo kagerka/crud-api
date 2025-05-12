@@ -3,7 +3,7 @@ import { v4, validate } from "uuid";
 import { getReqBody } from "./getReqBody";
 import { PostUser, User } from "./interfaces";
 
-export const getMethod = async (method: string, id: string | undefined, res: ServerResponse, users: User[]) => {
+export const getMethod = async (id: string | undefined, res: ServerResponse, users: User[]) => {
   if (!id) {
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify(users));
@@ -32,7 +32,7 @@ export const postMethod = async (req: IncomingMessage, res: ServerResponse, user
     const body = (await getReqBody(req)) as PostUser;
     if (typeof body.username !== "string" || typeof body.age !== "number" || !Array.isArray(body.hobbies)) {
       res.writeHead(400, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ message: "Body content is not valid" }));
+      res.end(JSON.stringify({ message: "Body content is not valid." }));
       return;
     }
 
@@ -73,7 +73,7 @@ export const putMethod = async (req: IncomingMessage, res: ServerResponse, users
 
     if (typeof body.username !== "string" || typeof body.age !== "number" || !Array.isArray(body.hobbies)) {
       res.writeHead(400, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ message: "Body content is not valid" }));
+      res.end(JSON.stringify({ message: "Body content is not valid." }));
       return;
     }
 
@@ -101,7 +101,7 @@ export const deleteMethod = async (res: ServerResponse, users: User[], id?: stri
     return;
   }
 
-  const userIndex = users.findIndex((u) => u.id === id);
+  const userIndex = users.findIndex((el) => el.id === id);
   if (userIndex === -1) {
     res.writeHead(404, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ message: "User not found." }));

@@ -1,4 +1,6 @@
-export const getReqBody = (req) => {
+import { IncomingMessage } from "http";
+
+export const getReqBody = (req: IncomingMessage) => {
   return new Promise((resolve, reject) => {
     let body = "";
     req.on("data", (chunk) => {

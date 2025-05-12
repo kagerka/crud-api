@@ -22,7 +22,7 @@ http
 
       switch (method) {
         case "GET":
-          await getMethod(method, id, res, users);
+          await getMethod(id, res, users);
           return;
         case "POST":
           await postMethod(req, res, users);
