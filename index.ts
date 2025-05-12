@@ -1,6 +1,6 @@
 import * as http from "http";
 import { users } from "./src/data";
-import { getMethod, postMethod } from "./src/methods";
+import { getMethod, postMethod, putMethod } from "./src/methods";
 
 http
   .createServer(async (req, res) => {
@@ -11,7 +11,7 @@ http
 
     if (api !== "api" || resource !== "users") {
       res.writeHead(404, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ message: "Not found" }));
+      res.end(JSON.stringify({ message: "This endpoint doesn't exist." }));
       return;
     }
 
@@ -21,6 +21,9 @@ http
         return;
       case "POST":
         await postMethod(req, res, users);
+        return;
+      case "PUT":
+        await putMethod(req, res, users, id);
         return;
 
       default:
