@@ -1,6 +1,10 @@
+import * as dotenv from "dotenv";
 import * as http from "http";
 import { users } from "./src/data";
 import { deleteMethod, getMethod, postMethod, putMethod } from "./src/methods";
+
+dotenv.config();
+const PORT = process.env.PORT || 4000;
 
 http
   .createServer(async (req, res) => {
@@ -40,6 +44,6 @@ http
       return;
     }
   })
-  .listen(4000, () => {
-    console.log("Server is started on http://localhost:4000");
+  .listen(PORT, () => {
+    console.log(`Server is started on http://localhost:${PORT}`);
   });
